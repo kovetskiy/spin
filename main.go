@@ -56,6 +56,8 @@ func main() {
 		spinner.SetActive(false)
 		spinner.Spin()
 
+		fmt.Print("\n")
+
 		if writeStdin {
 			fmt.Print(stdout.String())
 		}
