@@ -1,10 +1,14 @@
-# spin
+****
+spin
+****
 
-![example](http://i.imgur.com/JyfyJg9.gif)
+.. image:: http://i.imgur.com/JyfyJg9.gif
+   :alt: usage example
 
 The universal tool that provides the dead simple progress indicator.
 
-## Installation
+Installation
+============
 
 **spin** is go-gettable:
 
@@ -12,7 +16,8 @@ The universal tool that provides the dead simple progress indicator.
 go get github.com/kovetskiy/spin
 ```
 
-## Usage
+Usage
+=====
 
 See ``spin --help`` for command line options on test runners.
 
@@ -24,5 +29,7 @@ See ``spin --help`` for command line options on test runners.
  -h --help                 Show this screen.
  --version                 Show version.
 
-# License
+License
+=======
+
 MIT.
