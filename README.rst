@@ -27,16 +27,16 @@ See ``spin --help`` for command line options.
 
 ``-t --interval <millisec>``  Use specified ``<millisec>`` as spinner iteration interval. [default: 100]
 
-All of your need it's just pass any stdin to spin like as following::
+All you need to do is pipe any command to spin as follows::
 
  sleep 2 | spin -s 'Loading... '
 
-And your shell will spawn ``spin`` process and terminate it when ``sleep`` exited.
+and your shell will spawn ``spin`` process and terminate it when ``sleep`` exited.
 
 If you want to indicate real progress you can use flag ``-i`` and spin will
 use stdin data as progress indicator::
 
- git clone --progress https://github.com/kovetskiy/dotfiles 2>&1 | spin -i -s 'Clonning... '
+ git clone --progress https://github.com/kovetskiy/dotfiles 2>&1 | spin -i -s 'Cloning... '
 
 License
 =======
