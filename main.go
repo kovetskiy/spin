@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/kovetskiy/godocs"
@@ -26,6 +27,7 @@ Options:
     -s --status <string>      Use specified <string> as spinner status.
     -t --interval <millisec>  Use specified <millisec> as spinner iteration interval.
                                [default: 100]
+    -l --line                 Use last line as status.
     -h --help                 Show this screen.
     --version                 Show version.
 `
@@ -37,6 +39,7 @@ func main() {
 	var (
 		watchStdin  = args["--stdin-as-indicator"].(bool)
 		writeStdin  = args["--write-stdin"].(bool)
+		writeLine   = args["--line"].(bool)
 		status, _   = args["--status"].(string)
 		interval, _ = strconv.Atoi(args["--interval"].(string))
 
@@ -75,6 +78,12 @@ func main() {
 			if writeStdin {
 				stdout.WriteString(buffer)
 			}
+
+			if writeLine {
+				lines := strings.Split(strings.TrimSpace(buffer), "\n")
+				spinner.SetStatus(lines[len(lines)-1] + " ")
+			}
+
 			reading = true
 
 		case err := <-errors:
@@ -104,13 +113,13 @@ func getStdin() (chan string, chan error) {
 	go func() {
 		for {
 			buffer := make([]byte, 0xFFFF)
-			_, err := os.Stdin.Read(buffer)
+			size, err := os.Stdin.Read(buffer)
 			if err != nil {
 				errorer <- err
 				return
 			}
 
-			reader <- string(buffer)
+			reader <- string(buffer[0:size])
 		}
 	}()
 
