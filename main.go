@@ -81,7 +81,8 @@ func main() {
 
 			if writeLine {
 				lines := strings.Split(strings.TrimSpace(buffer), "\n")
-				spinner.SetStatus(lines[len(lines)-1] + " ")
+				status := strings.TrimSpace(lines[len(lines)-1])
+				spinner.SetStatus(" " + status)
 			}
 
 			reading = true
